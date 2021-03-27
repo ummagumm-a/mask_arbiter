@@ -1,0 +1,8 @@
+module mask_arbiter
+(
+	input [3:0] req,
+	input [1:0] ptr,
+	
+	output [3:0] grant
+);
+	

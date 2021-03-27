@@ -1,0 +1,95 @@
+|arbiter
+MAX10_CLK1_50 => clk.IN1
+KEY[0] => ~NO_FANOUT~
+KEY[1] => ~NO_FANOUT~
+SW[0] => SW[0].IN1
+SW[1] => SW[1].IN1
+SW[2] => SW[2].IN1
+SW[3] => SW[3].IN1
+SW[4] => SW[4].IN1
+SW[5] => SW[5].IN1
+SW[6] => ~NO_FANOUT~
+SW[7] => ~NO_FANOUT~
+SW[8] => ~NO_FANOUT~
+SW[9] => ~NO_FANOUT~
+LEDR[0] <= mask_arbiter:ma.grant
+LEDR[1] <= mask_arbiter:ma.grant
+LEDR[2] <= mask_arbiter:ma.grant
+LEDR[3] <= mask_arbiter:ma.grant
+LEDR[4] <= <GND>
+LEDR[5] <= <GND>
+LEDR[6] <= <GND>
+LEDR[7] <= <GND>
+LEDR[8] <= <GND>
+LEDR[9] <= <GND>
+
+
+|arbiter|mask_arbiter:ma
+clk => clk.IN2
+req[0] => req[0].IN1
+req[1] => req[1].IN1
+req[2] => req[2].IN1
+req[3] => req[3].IN1
+ptr[0] => Decoder0.IN1
+ptr[1] => Decoder0.IN0
+ptr[1] => mask[1].DATAIN
+grant[0] <= grant.DB_MAX_OUTPUT_PORT_TYPE
+grant[1] <= priority_arbiter:pa_for_masked.grant
+grant[2] <= priority_arbiter:pa_for_masked.grant
+grant[3] <= priority_arbiter:pa_for_masked.grant
+
+
+|arbiter|mask_arbiter:ma|priority_arbiter:pa_for_masked
+req[0] => Mux0.IN18
+req[0] => Mux1.IN18
+req[0] => Mux2.IN18
+req[0] => Mux3.IN18
+req[1] => Mux0.IN17
+req[1] => Mux1.IN17
+req[1] => Mux2.IN17
+req[1] => Mux3.IN17
+req[2] => Mux0.IN16
+req[2] => Mux1.IN16
+req[2] => Mux2.IN16
+req[2] => Mux3.IN16
+req[3] => Mux0.IN15
+req[3] => Mux1.IN15
+req[3] => Mux2.IN15
+req[3] => Mux3.IN15
+clk => grant[0]~reg0.CLK
+clk => grant[1]~reg0.CLK
+clk => grant[2]~reg0.CLK
+clk => grant[3]~reg0.CLK
+grant[0] <= grant[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+grant[1] <= grant[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+grant[2] <= grant[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+grant[3] <= grant[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|arbiter|mask_arbiter:ma|priority_arbiter:pa_for_unmasked
+req[0] => Mux0.IN18
+req[0] => Mux1.IN18
+req[0] => Mux2.IN18
+req[0] => Mux3.IN18
+req[1] => Mux0.IN17
+req[1] => Mux1.IN17
+req[1] => Mux2.IN17
+req[1] => Mux3.IN17
+req[2] => Mux0.IN16
+req[2] => Mux1.IN16
+req[2] => Mux2.IN16
+req[2] => Mux3.IN16
+req[3] => Mux0.IN15
+req[3] => Mux1.IN15
+req[3] => Mux2.IN15
+req[3] => Mux3.IN15
+clk => grant[0]~reg0.CLK
+clk => grant[1]~reg0.CLK
+clk => grant[2]~reg0.CLK
+clk => grant[3]~reg0.CLK
+grant[0] <= grant[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+grant[1] <= grant[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+grant[2] <= grant[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+grant[3] <= grant[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
