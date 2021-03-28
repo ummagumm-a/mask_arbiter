@@ -10,21 +10,20 @@ SW[6] => ~NO_FANOUT~
 SW[7] => ~NO_FANOUT~
 SW[8] => ~NO_FANOUT~
 SW[9] => ~NO_FANOUT~
-LEDR[0] <= mask_arbiter:ma.grant
-LEDR[1] <= mask_arbiter:ma.grant
-LEDR[2] <= mask_arbiter:ma.grant
-LEDR[3] <= mask_arbiter:ma.grant
-LEDR[4] <= <GND>
-LEDR[5] <= <GND>
-LEDR[6] <= <GND>
-LEDR[7] <= <GND>
-LEDR[8] <= <GND>
-LEDR[9] <= <GND>
+LEDR[0] << mask_arbiter:ma.grant
+LEDR[1] << mask_arbiter:ma.grant
+LEDR[2] << mask_arbiter:ma.grant
+LEDR[3] << mask_arbiter:ma.grant
+LEDR[4] << <GND>
+LEDR[5] << <GND>
+LEDR[6] << <GND>
+LEDR[7] << <GND>
+LEDR[8] << <GND>
+LEDR[9] << <GND>
 
 
 |arbiter|mask_arbiter:ma
 clk => clk.IN2
-reset => ~NO_FANOUT~
 req[0] => req[0].IN1
 req[1] => req[1].IN1
 req[2] => req[2].IN1
@@ -32,10 +31,10 @@ req[3] => req[3].IN1
 ptr[0] => Decoder0.IN1
 ptr[1] => Decoder0.IN0
 ptr[1] => mask[1].DATAIN
-grant[0] <= result.DB_MAX_OUTPUT_PORT_TYPE
-grant[1] <= priority_arbiter:pa_for_masked.grant
-grant[2] <= priority_arbiter:pa_for_masked.grant
-grant[3] <= priority_arbiter:pa_for_masked.grant
+grant[0] <= result[0].DB_MAX_OUTPUT_PORT_TYPE
+grant[1] <= result[1].DB_MAX_OUTPUT_PORT_TYPE
+grant[2] <= result[2].DB_MAX_OUTPUT_PORT_TYPE
+grant[3] <= result[3].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |arbiter|mask_arbiter:ma|priority_arbiter:pa_for_masked

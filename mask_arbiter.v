@@ -1,7 +1,6 @@
 module mask_arbiter
   (
     input clk,
-	 input reset,
     input [3:0] req,
 	 input [1:0] ptr,
 	
@@ -35,7 +34,7 @@ module mask_arbiter
 		.grant ( unmask_grant )
 	);
   
-  always @ (posedge clk or posedge reset) begin
+  always @ (posedge clk) begin
 		masked_req <= mask & req;
 		no_mask <= masked_req == 4'h0;
 		result <= mask_grant | ( no_mask & unmask_grant );
