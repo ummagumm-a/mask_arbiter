@@ -1,7 +1,5 @@
 |arbiter
-MAX10_CLK1_50 => clk.IN1
-KEY[0] => ~NO_FANOUT~
-KEY[1] => ~NO_FANOUT~
+MAX10_CLK1_50 => MAX10_CLK1_50.IN1
 SW[0] => SW[0].IN1
 SW[1] => SW[1].IN1
 SW[2] => SW[2].IN1
@@ -26,6 +24,7 @@ LEDR[9] <= <GND>
 
 |arbiter|mask_arbiter:ma
 clk => clk.IN2
+reset => ~NO_FANOUT~
 req[0] => req[0].IN1
 req[1] => req[1].IN1
 req[2] => req[2].IN1
@@ -33,7 +32,7 @@ req[3] => req[3].IN1
 ptr[0] => Decoder0.IN1
 ptr[1] => Decoder0.IN0
 ptr[1] => mask[1].DATAIN
-grant[0] <= grant.DB_MAX_OUTPUT_PORT_TYPE
+grant[0] <= result.DB_MAX_OUTPUT_PORT_TYPE
 grant[1] <= priority_arbiter:pa_for_masked.grant
 grant[2] <= priority_arbiter:pa_for_masked.grant
 grant[3] <= priority_arbiter:pa_for_masked.grant

@@ -1,16 +1,18 @@
 module mask_arbiter
   (
     input clk,
+	 input reset,
     input [3:0] req,
-	input [1:0] ptr,
+	 input [1:0] ptr,
 	
-	output [3:0] grant
+	 output [3:0] grant
   );
-	reg [3:0] mask;
-  	wire [3:0] mask_grant;
-	wire [3:0] unmask_grant;
+	 reg [3:0] mask;
+  	 wire [3:0] mask_grant;
+	 wire [3:0] unmask_grant;
     reg [3:0] masked_req;
     reg no_mask;
+	 reg [3:0] result;
 	
 	always @ (posedge clk) begin
 		casez (ptr)
@@ -33,11 +35,12 @@ module mask_arbiter
 		.grant ( unmask_grant )
 	);
   
-  always @ (posedge clk) begin
-      masked_req <= mask & req;
-      no_mask <= masked_req == 4'h0;	
+  always @ (posedge clk or posedge reset) begin
+		masked_req <= mask & req;
+		no_mask <= masked_req == 4'h0;
+		result <= mask_grant | ( no_mask & unmask_grant );
   end
   
-  assign grant = mask_grant | ( no_mask & unmask_grant );
+  assign grant = result;
   
 endmodule 
