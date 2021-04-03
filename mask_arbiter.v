@@ -6,6 +6,14 @@ module mask_arbiter
 
   output [3:0] grant,
 );
+
+  wire enable;
+  
+  enable_creator ec (
+    .clk ( clk ),
+    .reset ( reset ),
+    .enable ( enable )
+  );
   
   reg [3:0] mask;
   reg [3:0] my_req;
