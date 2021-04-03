@@ -1,5 +1,5 @@
 Analysis & Synthesis report for arbiter
-Sat Apr  3 18:20:06 2021
+Sun Apr  4 00:57:47 2021
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -10,7 +10,17 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. Removed Registers Triggering Further Register Optimizations
+ 10. General Register Statistics
+ 11. Port Connectivity Checks: "mask_arbiter:ma|priority_arbiter:pa_for_unmasked"
+ 12. Port Connectivity Checks: "mask_arbiter:ma|priority_arbiter:pa_for_masked"
+ 13. Post-Synthesis Netlist Statistics for Top Partition
+ 14. Elapsed Time Per Partition
+ 15. Analysis & Synthesis Messages
 
 
 
@@ -37,20 +47,20 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Sat Apr  3 18:20:06 2021           ;
+; Analysis & Synthesis Status        ; Successful - Sun Apr  4 00:57:46 2021       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; arbiter                                     ;
 ; Top-level Entity Name              ; arbiter                                     ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; N/A until Partition Merge                   ;
-;     Total combinational functions  ; N/A until Partition Merge                   ;
-;     Dedicated logic registers      ; N/A until Partition Merge                   ;
-; Total registers                    ; N/A until Partition Merge                   ;
-; Total pins                         ; N/A until Partition Merge                   ;
-; Total virtual pins                 ; N/A until Partition Merge                   ;
-; Total memory bits                  ; N/A until Partition Merge                   ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                   ;
-; Total PLLs                         ; N/A until Partition Merge                   ;
+; Total logic elements               ; 0                                           ;
+;     Total combinational functions  ; 0                                           ;
+;     Dedicated logic registers      ; 0                                           ;
+; Total registers                    ; 0                                           ;
+; Total pins                         ; 15                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
 +------------------------------------+---------------------------------------------+
 
 
@@ -156,13 +166,153 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                          ;
++----------------------------------+-----------------+------------------------+-------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                            ; Library ;
++----------------------------------+-----------------+------------------------+-------------------------------------------------------------------------+---------+
+; arbiter.v                        ; yes             ; User Verilog HDL File  ; /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v          ;         ;
+; mask_arbiter.v                   ; yes             ; User Verilog HDL File  ; /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/mask_arbiter.v     ;         ;
+; priority_arbiter.v               ; yes             ; User Verilog HDL File  ; /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/priority_arbiter.v ;         ;
+; enable_creator.v                 ; yes             ; User Verilog HDL File  ; /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/enable_creator.v   ;         ;
++----------------------------------+-----------------+------------------------+-------------------------------------------------------------------------+---------+
+
+
++-------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                 ;
++---------------------------------------------+---------------+
+; Resource                                    ; Usage         ;
++---------------------------------------------+---------------+
+;                                             ;               ;
+; Total combinational functions               ; 0             ;
+; Logic element usage by number of LUT inputs ;               ;
+;     -- 4 input functions                    ; 0             ;
+;     -- 3 input functions                    ; 0             ;
+;     -- <=2 input functions                  ; 0             ;
+;                                             ;               ;
+; Logic elements by mode                      ;               ;
+;     -- normal mode                          ; 0             ;
+;     -- arithmetic mode                      ; 0             ;
+;                                             ;               ;
+; Total registers                             ; 0             ;
+;     -- Dedicated logic registers            ; 0             ;
+;     -- I/O registers                        ; 0             ;
+;                                             ;               ;
+; I/O pins                                    ; 15            ;
+;                                             ;               ;
+; Embedded Multiplier 9-bit elements          ; 0             ;
+;                                             ;               ;
+; Maximum fan-out node                        ; MAX10_CLK1_50 ;
+; Maximum fan-out                             ; 1             ;
+; Total fan-out                               ; 15            ;
+; Average fan-out                             ; 0.50          ;
++---------------------------------------------+---------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                      ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
+; |arbiter                   ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 15   ; 0            ; |arbiter            ; arbiter     ; work         ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                  ;
++------------------------------------------------------------+----------------------------------------+
+; Register name                                              ; Reason for Removal                     ;
++------------------------------------------------------------+----------------------------------------+
+; mask_arbiter:ma|priority_arbiter:pa_for_unmasked|grant[0]  ; Stuck at GND due to stuck port clock   ;
+; mask_arbiter:ma|priority_arbiter:pa_for_masked|grant[0..3] ; Stuck at GND due to stuck port clock   ;
+; mask_arbiter:ma|result[0..3]                               ; Stuck at GND due to stuck port data_in ;
+; mask_arbiter:ma|enable_creator:ec|cnt[0..31]               ; Lost fanout                            ;
+; Total Number of Removed Registers = 41                     ;                                        ;
++------------------------------------------------------------+----------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                ;
++-----------------------------------------------------------+-------------------------+----------------------------------------------------------------------+
+; Register name                                             ; Reason for Removal      ; Registers Removed due to This Register                               ;
++-----------------------------------------------------------+-------------------------+----------------------------------------------------------------------+
+; mask_arbiter:ma|priority_arbiter:pa_for_masked|grant[3]   ; Stuck at GND            ; mask_arbiter:ma|result[3], mask_arbiter:ma|enable_creator:ec|cnt[1], ;
+;                                                           ; due to stuck port clock ; mask_arbiter:ma|enable_creator:ec|cnt[0]                             ;
+; mask_arbiter:ma|priority_arbiter:pa_for_unmasked|grant[0] ; Stuck at GND            ; mask_arbiter:ma|result[0]                                            ;
+;                                                           ; due to stuck port clock ;                                                                      ;
+; mask_arbiter:ma|priority_arbiter:pa_for_masked|grant[1]   ; Stuck at GND            ; mask_arbiter:ma|result[1]                                            ;
+;                                                           ; due to stuck port clock ;                                                                      ;
+; mask_arbiter:ma|priority_arbiter:pa_for_masked|grant[2]   ; Stuck at GND            ; mask_arbiter:ma|result[2]                                            ;
+;                                                           ; due to stuck port clock ;                                                                      ;
++-----------------------------------------------------------+-------------------------+----------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 0     ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mask_arbiter:ma|priority_arbiter:pa_for_unmasked"                                                                                                   ;
++-------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                                                                                      ;
++-------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; grant[3..1] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                          ;
+; clk         ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++-------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mask_arbiter:ma|priority_arbiter:pa_for_masked"                                                                                             ;
++------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                      ;
++------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; clk  ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 15                          ;
+; cycloneiii_lcell_comb ; 1                           ;
+;     normal            ; 1                           ;
+;         0 data inputs ; 1                           ;
+;                       ;                             ;
+; Max LUT depth         ; 0.00                        ;
+; Average LUT depth     ; 0.00                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Sat Apr  3 18:19:55 2021
+    Info: Processing started: Sun Apr  4 00:57:35 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off arbiter -c arbiter
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -174,14 +324,89 @@ Info (12021): Found 1 design units, including 1 entities, in source file priorit
     Info (12023): Found entity 1: priority_arbiter File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/priority_arbiter.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file enable_creator.v
     Info (12023): Found entity 1: enable_creator File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/enable_creator.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file ptr_increment.v
-    Info (12023): Found entity 1: ptr_increment File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/ptr_increment.v Line: 1
-Warning (10236): Verilog HDL Implicit Net warning at mask_arbiter.v(36): created implicit net for "enable" File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/mask_arbiter.v Line: 36
-Error (10219): Verilog HDL Continuous Assignment error at ptr_increment.v(14): object "incremented_ptr" on left-hand side of assignment must have a net type File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/ptr_increment.v Line: 14
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 1 error, 2 warnings
-    Error: Peak virtual memory: 341 megabytes
-    Error: Processing ended: Sat Apr  3 18:20:06 2021
-    Error: Elapsed time: 00:00:11
-    Error: Total CPU time (on all processors): 00:00:32
+Info (12021): Found 0 design units, including 0 entities, in source file ptr_increment.v
+Info (12127): Elaborating entity "arbiter" for the top level hierarchy
+Info (12128): Elaborating entity "mask_arbiter" for hierarchy "mask_arbiter:ma" File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 14
+Info (12128): Elaborating entity "enable_creator" for hierarchy "mask_arbiter:ma|enable_creator:ec" File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/mask_arbiter.v Line: 16
+Info (12128): Elaborating entity "priority_arbiter" for hierarchy "mask_arbiter:ma|priority_arbiter:pa_for_masked" File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/mask_arbiter.v Line: 80
+Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 7
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 7
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 7
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 7
+Info (17049): 32 registers lost all their fanouts during netlist optimizations.
+Warning (20013): Ignored 24 assignments for entity "DE10_LITE_Default" -- entity does not exist in design
+    Warning (20014): Assignment for entity set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_PRESERVE_HIGH_SPEED_TILES ON -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IGNORE_SOURCE_FILE_CHANGES OFF -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ALWAYS_USE_QXP_NETLIST OFF -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_COLOR 16764057 -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_ASSIGNMENTS ON -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_ASSIGNMENTS REPLACE_CONFLICTING -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_LOGICLOCK_REGIONS UPDATE_CONFLICTING -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PIN_ASSIGNMENTS ON -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PROMOTE_ASSIGNMENTS ON -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_TYPE STANDARD_PARTITION -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ALLOW_MULTIPLE_PERSONAS OFF -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ASD_REGION_ID 1 -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name CROSS_BOUNDARY_OPTIMIZATIONS OFF -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_CONSTANTS_ON_INPUTS ON -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_INVERSIONS_ON_INPUTS ON -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name REMOVE_LOGIC_ON_UNCONNECTED_OUTPUTS ON -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_INPUTS ON -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_BIDIRS ON -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ABSORB_PATHS_FROM_OUTPUTS_TO_INPUTS ON -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_EXTRACT_HARD_BLOCK_NODES ON -entity DE10_LITE_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ENABLE_STRICT_PRESERVATION OFF -entity DE10_LITE_Default -section_id Top was ignored
+Warning (20013): Ignored 24 assignments for entity "test" -- entity does not exist in design
+    Warning (20014): Assignment for entity set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_PRESERVE_HIGH_SPEED_TILES ON -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IGNORE_SOURCE_FILE_CHANGES OFF -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ALWAYS_USE_QXP_NETLIST OFF -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_COLOR 16764057 -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_ASSIGNMENTS ON -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_ASSIGNMENTS REPLACE_CONFLICTING -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_LOGICLOCK_REGIONS UPDATE_CONFLICTING -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PIN_ASSIGNMENTS ON -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PROMOTE_ASSIGNMENTS ON -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_TYPE STANDARD_PARTITION -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ALLOW_MULTIPLE_PERSONAS OFF -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ASD_REGION_ID 1 -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name CROSS_BOUNDARY_OPTIMIZATIONS OFF -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_CONSTANTS_ON_INPUTS ON -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_INVERSIONS_ON_INPUTS ON -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name REMOVE_LOGIC_ON_UNCONNECTED_OUTPUTS ON -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_INPUTS ON -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_BIDIRS ON -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ABSORB_PATHS_FROM_OUTPUTS_TO_INPUTS ON -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_EXTRACT_HARD_BLOCK_NODES ON -entity test -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ENABLE_STRICT_PRESERVATION OFF -entity test -section_id Top was ignored
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 11 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "MAX10_CLK1_50" File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 3
+    Warning (15610): No output dependent on input pin "SW[0]" File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 5
+    Warning (15610): No output dependent on input pin "SW[1]" File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 5
+    Warning (15610): No output dependent on input pin "SW[2]" File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 5
+    Warning (15610): No output dependent on input pin "SW[3]" File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 5
+    Warning (15610): No output dependent on input pin "SW[4]" File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 5
+    Warning (15610): No output dependent on input pin "SW[5]" File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 5
+    Warning (15610): No output dependent on input pin "SW[6]" File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 5
+    Warning (15610): No output dependent on input pin "SW[7]" File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 5
+    Warning (15610): No output dependent on input pin "SW[8]" File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 5
+    Warning (15610): No output dependent on input pin "SW[9]" File: /home/ummagumm_a/Projects/FPGA_Projects/mask_arbiter/arbiter.v Line: 5
+Info (21057): Implemented 15 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 11 input pins
+    Info (21059): Implemented 4 output pins
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 69 warnings
+    Info: Peak virtual memory: 359 megabytes
+    Info: Processing ended: Sun Apr  4 00:57:47 2021
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:32
 
 

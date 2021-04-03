@@ -4,25 +4,32 @@ SW[0] => SW[0].IN1
 SW[1] => SW[1].IN1
 SW[2] => SW[2].IN1
 SW[3] => SW[3].IN1
-SW[4] => SW[4].IN1
-SW[5] => SW[5].IN1
+SW[4] => ~NO_FANOUT~
+SW[5] => ~NO_FANOUT~
 SW[6] => ~NO_FANOUT~
-SW[7] => ~NO_FANOUT~
+SW[7] => SW[7].IN1
 SW[8] => ~NO_FANOUT~
-SW[9] => SW[9].IN1
-LEDR[0] <= mask_arbiter:ma.grant
-LEDR[1] <= mask_arbiter:ma.grant
-LEDR[2] <= mask_arbiter:ma.grant
-LEDR[3] <= mask_arbiter:ma.grant
-LEDR[4] <= <GND>
-LEDR[5] <= <GND>
-LEDR[6] <= <GND>
-LEDR[7] <= <GND>
-LEDR[8] <= <GND>
-LEDR[9] <= <GND>
+SW[9] => ~NO_FANOUT~
+LEDR[0] << mask_arbiter:ma.grant
+LEDR[1] << mask_arbiter:ma.grant
+LEDR[2] << mask_arbiter:ma.grant
+LEDR[3] << mask_arbiter:ma.grant
 
 
 |arbiter|mask_arbiter:ma
+clk => clk.IN1
+reset => reset.IN1
+req[0] => my_req[0].IN1
+req[1] => my_req[1].IN1
+req[2] => my_req[2].IN1
+req[3] => my_req[3].IN1
+grant[0] <= result[0].DB_MAX_OUTPUT_PORT_TYPE
+grant[1] <= result[1].DB_MAX_OUTPUT_PORT_TYPE
+grant[2] <= result[2].DB_MAX_OUTPUT_PORT_TYPE
+grant[3] <= result[3].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|arbiter|mask_arbiter:ma|enable_creator:ec
 clk => cnt[0].CLK
 clk => cnt[1].CLK
 clk => cnt[2].CLK
@@ -87,17 +94,7 @@ reset => cnt[28].ACLR
 reset => cnt[29].ACLR
 reset => cnt[30].ACLR
 reset => cnt[31].ACLR
-req[0] => req[0].IN1
-req[1] => req[1].IN1
-req[2] => req[2].IN1
-req[3] => req[3].IN1
-ptr[0] => Decoder0.IN1
-ptr[1] => Decoder0.IN0
-ptr[1] => mask[1].DATAIN
-grant[0] <= result[0].DB_MAX_OUTPUT_PORT_TYPE
-grant[1] <= result[1].DB_MAX_OUTPUT_PORT_TYPE
-grant[2] <= result[2].DB_MAX_OUTPUT_PORT_TYPE
-grant[3] <= result[3].DB_MAX_OUTPUT_PORT_TYPE
+enable <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |arbiter|mask_arbiter:ma|priority_arbiter:pa_for_masked

@@ -4,7 +4,7 @@ module mask_arbiter
   input reset,
   input [3:0] req,
 
-  output [3:0] grant,
+  output [3:0] grant
 );
 
   wire enable;
@@ -26,6 +26,7 @@ module mask_arbiter
   wire [3:0] masked_req = (mask & my_req);
   
   reg [3:0] result;
+//  wire [3:0] res = result;
   
   // pointer
   reg [1:0] ptr = 2'b10;
@@ -34,23 +35,34 @@ module mask_arbiter
 //   always @ (result)
 //     ptr <= ptr + 1;
 
-  // move pointer to the next request
-  reg [3:0] req_shifted;
-  reg [7:0] req_shifted_double;
-  
-  always @ (grant) begin
-    my_req = my_req & ~ grant;
-    req_shifted_double = { my_req[3:0], my_req[3:0] } >> ptr;
-    req_shifted = req_shifted_double[3:0];
-    
-    casez (req_shifted[3:0])
-		4'b???1 : ptr = ptr;
-		4'b??10 : ptr = ptr + 2'b01;
-		4'b?100 : ptr = ptr + 2'b10;
-		4'b1000 : ptr = ptr + 2'b11;
-      4'b0000 : ptr = ptr;
+  // move pointer to the next requester after the one that just received a grant
+  always @ (result [3:0]) begin    
+    casez (result [3:0])
+		4'b???1 : ptr = 2'b01;
+		4'b??10 : ptr = 2'b10;
+		4'b?100 : ptr = 2'b11;
+		4'b1000 : ptr = 2'b00;
+      4'b0000 : ptr = 2'b00;
 	endcase
   end
+
+  // move pointer to the next active requester
+//  reg [3:0] req_shifted;
+//  reg [7:0] req_shifted_double;
+//  
+//  always @ (grant) begin
+//    my_req = my_req & ~ grant;
+//    req_shifted_double = { my_req[3:0], my_req[3:0] } >> ptr;
+//    req_shifted = req_shifted_double[3:0];
+//    
+//    casez (req_shifted[3:0])
+//		4'b???1 : ptr = ptr;
+//		4'b??10 : ptr = ptr + 2'b01;
+//		4'b?100 : ptr = ptr + 2'b10;
+//		4'b1000 : ptr = ptr + 2'b11;
+//      4'b0000 : ptr = ptr;
+//	endcase
+//  end
   
   // make a mask depending on the value of pointer
   always @ (ptr) begin
@@ -72,12 +84,8 @@ module mask_arbiter
     .grant ( unmask_grant )
   );
   
-  always @ (posedge clk or posedge reset) begin
-    if (reset) begin
-      ptr <= 2'b0;
-    end else begin
-	  result <= mask_grant | ( no_mask & unmask_grant );
-    end
+  always @ (posedge enable) begin
+	 result <= mask_grant | ( no_mask & unmask_grant );
   end
   
   assign grant = result;  
