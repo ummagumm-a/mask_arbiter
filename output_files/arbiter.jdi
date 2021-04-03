@@ -1,8 +1,8 @@
 <sld_project_info>
   <project>
-    <hash md5_digest_80b="92c8cb39841bceddadd1"/>
+    <hash md5_digest_80b="4d6ddd769626305d45ba"/>
   </project>
   <file_info>
-    <file device="10M50DAF484C7G" path="arbiter.sof" usercode="0xFFFFFFFF"/>
+    <file device="EP4CE6E22C6" path="arbiter.sof" usercode="0xFFFFFFFF"/>
   </file_info>
 </sld_project_info>

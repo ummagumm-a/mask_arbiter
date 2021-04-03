@@ -1,0 +1,16 @@
+module ptr_increment
+(
+	input [1:0] ptr,
+	input clk,
+	
+	output [1:0] incremented_pointer
+);
+
+	reg [1:0] res = ptr;
+	
+	res = res + 1;
+	
+	assign incremented_poitner  res;
+	
+endmodule
+	

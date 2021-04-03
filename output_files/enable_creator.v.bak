@@ -1,0 +1,9 @@
+module enable_creator
+(
+	input clk,
+	input reset,
+	
+	output enable
+);
+
+	

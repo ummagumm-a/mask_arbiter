@@ -1,18 +1,10 @@
-Fitter Status : Successful - Sun Mar 28 14:38:26 2021
+I/O Assignment Analysis Status : Successful - Sat Apr  3 16:15:25 2021
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : arbiter
 Top-level Entity Name : arbiter
-Family : MAX 10
-Device : 10M50DAF484C7G
+Family : Cyclone IV E
+Device : EP4CE6E22C6
 Timing Models : Final
-Total logic elements : 19 / 49,760 ( < 1 % )
-    Total combinational functions : 14 / 49,760 ( < 1 % )
-    Dedicated logic registers : 17 / 49,760 ( < 1 % )
-Total registers : 17
-Total pins : 21 / 360 ( 6 % )
+Total pins : 21 / 92 ( 23 % )
 Total virtual pins : 0
-Total memory bits : 0 / 1,677,312 ( 0 % )
-Embedded Multiplier 9-bit elements : 0 / 288 ( 0 % )
-Total PLLs : 0 / 4 ( 0 % )
-UFM blocks : 0 / 1 ( 0 % )
-ADC blocks : 0 / 2 ( 0 % )
+Total PLLs : 0 / 2 ( 0 % )
